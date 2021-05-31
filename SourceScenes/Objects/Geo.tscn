@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://SourceScenes/Objects/Player.gd" type="Script" id=2]
+[ext_resource path="res://Src/Sprites/Placeholders/particle-binary star.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 22.2063, 23.1748 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+render_priority = 2
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[node name="Geo" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource( 3 )
+lifetime = 20.0
+randomness = 1.0
+lifetime_randomness = 0.44
+texture = ExtResource( 3 )
+direction = Vector2( 10, 10 )
+spread = 180.0
+initial_velocity = 0.5
+anim_speed = 60.0
